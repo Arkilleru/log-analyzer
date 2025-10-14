@@ -39,3 +39,42 @@
 
 # debug information files
 *.dwo
+
+# Qt Creator
+*.pro.user
+*.pro.user.*
+*.autosave
+
+# Qt Auto-generated
+moc_*
+qrc_*
+ui_*
+*.qm
+
+# Qt Build
+Makefile*
+*.qmake.stash
+.build-debug/
+.build-release/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# Build directories
+build/
+*/build/
+
+# IDE
+.vscode/
+.idea/
+*.cbp
+*.workspace
+
+# Logs and outputs
+*.log
+/reports/
+/output/
