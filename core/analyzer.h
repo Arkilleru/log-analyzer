@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <fstream>
 #include <unordered_map>
 
 struct LogInformation {
@@ -22,19 +23,21 @@ struct AnalysisResult {
 };
 
 
-class Analyzer {
+
+class Reader {
 private:
-   Reader reader; 
-   Parser parser;
-   Reporter reporter;
-   Statistics statistics;
+    std::unique_ptr<std::ifstream> file;
+    size_t line_number;
 
 public:
-    std::string analyzer(std::string path);
+    Reader() = default;
+    ~Reader() = default;
+
+    bool OpenFile(const std::string& path);
+    std::string ReadLine();
+    bool MoreLines();
+    void CloseFile();
 };
-
-
-class Reader {};
 
 
 class Parser {};
@@ -44,4 +47,16 @@ class Reporter {};
 
 
 class Statistics {};
+
+
+class Analyzer {
+private:
+   Reader reader; 
+   Parser parser;
+   Reporter reporter;
+   Statistics statistics;
+
+public:
+    std::string analyzer(std::string& path);
+};
 
