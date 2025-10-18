@@ -23,6 +23,14 @@ struct AnalysisResult {
 };
 
 
+class Parser {};
+
+
+class Reporter {};
+
+
+class Statistics {};
+
 
 class Reader {
 private:
@@ -39,14 +47,6 @@ public:
     void CloseFile();
 };
 
-
-class Parser {};
-
-
-class Reporter {};
-
-
-class Statistics {};
 
 
 class Analyzer {
