@@ -9,8 +9,9 @@ struct LogInformation {
     std::string time;
     std::string operation;
     std::string url;
-    std::string status;
-    std::string answer_size;
+    int status;
+    size_t answer_size;
+    bool parse_success;
 };
 
 struct AnalysisResult {
