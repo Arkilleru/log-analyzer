@@ -3,6 +3,8 @@
 #include <string>
 #include <unordered_map>
 
+#include <regex>
+
 struct LogInformation {
     std::string ip;
     std::string time;
@@ -28,7 +30,14 @@ struct AnalysisResult {
 class Reader {};
 
 
-class Parser {};
+class Parser {
+private:
+    std::regex nginx_pattern;
+public:
+    Parser() : nginx_pattern(R"(^(\d+\.\d+\.\d+\.\d+) - - \[(.*?)\] \"(\w+) (.*?) HTTP/.*?\" (\d+) (\d+))") {}
+
+    LogInformation Parse(const std::string& line);
+};
 
 
 class Reporter {};
