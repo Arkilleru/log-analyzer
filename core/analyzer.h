@@ -43,6 +43,6 @@ private:
    Statistics statistics;
 
 public:
-    std::string analyzer(std::string path);
+    std::string analyzer(std::string& path);
 };
 
