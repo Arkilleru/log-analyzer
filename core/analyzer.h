@@ -22,16 +22,6 @@ struct AnalysisResult {
 };
 
 
-class Analyzer {
-private:
-   Reader reader; 
-   Parser parser;
-   Reporter reporter;
-   Statistics statistics;
-
-public:
-    std::string analyzer(std::string path);
-};
 
 
 class Reader {};
@@ -44,4 +34,15 @@ class Reporter {};
 
 
 class Statistics {};
+
+class Analyzer {
+private:
+   Reader reader; 
+   Parser parser;
+   Reporter reporter;
+   Statistics statistics;
+
+public:
+    std::string analyzer(std::string path);
+};
 
