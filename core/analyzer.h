@@ -17,12 +17,13 @@ struct LogInformation {
 };
 
 struct AnalysisResult {
-    std::unordered_map<std::string, int> error_counts;
+    std::unordered_map<int, int> error_counts;
     std::unordered_map<std::string, int> ip;
     std::unordered_map<std::string, int> time_distribution;
-    int total_processed;
-    int failed_parses;
-    std::string analyze_problems;
+    int total_processed = 0;
+    int failed_parses = 0;
+    int successful_requests = 0;
+    int error_requests = 0; 
 };
 
 
@@ -40,7 +41,12 @@ public:
 class Reporter {};
 
 
-class Statistics {};
+class Statistics {
+public:
+    AnalysisResult Process(LogInformation& data);
+    std::string ExtractHour(std::string& time);
+
+};
 
 
 class Reader {
