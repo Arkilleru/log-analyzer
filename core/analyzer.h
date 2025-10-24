@@ -3,7 +3,8 @@
 #include <string>
 #include <fstream>
 #include <unordered_map>
-
+#include <vector>
+#include <algorithm>
 #include <regex>
 
 struct LogInformation {
@@ -17,7 +18,7 @@ struct LogInformation {
 };
 
 struct AnalysisResult {
-    std::unordered_map<int, int> error_counts;
+    std::unordered_map<std::string, int> error_counts;
     std::unordered_map<std::string, int> ip;
     std::unordered_map<std::string, int> time_distribution;
     int total_processed = 0;
@@ -38,7 +39,16 @@ public:
 };
 
 
-class Reporter {};
+class Reporter {
+private:
+    std::string GenerateGeneralStats(const AnalysisResult& data);
+    std::string GenerateIpErrorsTop(const AnalysisResult& data);
+    std::string GenerateErrorTypes(const AnalysisResult& data);
+    std::string GenerateTimeDistribution(const AnalysisResult& data);
+    std::vector<std::pair<std::string, int>> ToSortedVector(const std::unordered_map<std::string, int> mp);
+public:
+    std::string GenerateTextReport(const AnalysisResult& data);
+};
 
 
 class Statistics {

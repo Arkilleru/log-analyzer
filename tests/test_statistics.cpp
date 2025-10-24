@@ -1,7 +1,7 @@
 #include "tests.h"
 
 
-TEST(ParserTest, NormalTest) {
+TEST(StatisticsTest, NormalTest) {
     Statistics statistic;
     LogInformation error_entry;
     error_entry.status = 400;
@@ -12,13 +12,13 @@ TEST(ParserTest, NormalTest) {
     AnalysisResult data = statistic.Process(error_entry);
     EXPECT_EQ(data.ip[error_entry.ip], 1);
     EXPECT_EQ(data.time_distribution["18"], 1);
-    EXPECT_EQ(data.error_counts[400], 1);
+    EXPECT_EQ(data.error_counts["400"], 1);
     EXPECT_EQ(data.error_requests, 1);
     EXPECT_EQ(data.successful_requests, 0);
 }
 
 
-TEST(ParserTest, NoErrorTest) {
+TEST(StatisticsTest, NoErrorTest) {
     Statistics statistic;
     LogInformation error_entry;
     error_entry.status = 200;
@@ -30,7 +30,7 @@ TEST(ParserTest, NoErrorTest) {
     EXPECT_EQ(data.successful_requests, 1);
 }
 
-TEST(ParserTest, ParseFailTest) {
+TEST(statisticsTest, ParseFailTest) {
     Statistics statistic;
     LogInformation error_entry;
     error_entry.status = 500;
