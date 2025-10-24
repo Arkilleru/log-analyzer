@@ -22,7 +22,7 @@ AnalysisResult Statistics::Process(LogInformation& data) {
     }
     else {
         res.ip[data.ip]++;
-        res.error_counts[data.status]++;
+        res.error_counts[std::to_string(data.status)]++;
         res.time_distribution[ExtractHour(data.time)]++;
         res.error_requests++;
     }
