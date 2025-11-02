@@ -45,7 +45,7 @@ private:
     std::string GenerateIpErrorsTop(const AnalysisResult& data);
     std::string GenerateErrorTypes(const AnalysisResult& data);
     std::string GenerateTimeDistribution(const AnalysisResult& data);
-    std::vector<std::pair<std::string, int>> ToSortedVector(const std::unordered_map<std::string, int> mp);
+    std::vector<std::pair<std::string, int>> ToSortedVector(const std::unordered_map<std::string, int>& mp);
 public:
     std::string GenerateTextReport(const AnalysisResult& data);
 };
@@ -53,7 +53,7 @@ public:
 
 class Statistics {
 public:
-    AnalysisResult Process(LogInformation& data);
+    void Process(LogInformation& data, AnalysisResult& res);
     std::string ExtractHour(std::string& time);
 
 };
@@ -84,6 +84,6 @@ private:
    Statistics statistics;
 
 public:
-    std::string analyzer(std::string& path);
+    std::string analyze(std::string& path);
 };
 

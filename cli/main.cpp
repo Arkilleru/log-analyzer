@@ -6,7 +6,7 @@ int main() {
     std::getline(std::cin, path);
 
     Analyzer analysis;
-    std::string report = analysis.analyzer(path);
+    std::string report = analysis.analyze(path);
 
     std::cout << report;
 

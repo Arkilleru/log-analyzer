@@ -78,3 +78,6 @@ build/
 *.log
 /reports/
 /output/
+
+
+!tests/test_data/*.log

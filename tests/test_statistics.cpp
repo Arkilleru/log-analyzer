@@ -9,7 +9,8 @@ TEST(StatisticsTest, NormalTest) {
     error_entry.ip = "192.168.1.10";
     error_entry.parse_success = true;
 
-    AnalysisResult data = statistic.Process(error_entry);
+    AnalysisResult data;
+    statistic.Process(error_entry, data);
     EXPECT_EQ(data.ip[error_entry.ip], 1);
     EXPECT_EQ(data.time_distribution["18"], 1);
     EXPECT_EQ(data.error_counts["400"], 1);
@@ -26,7 +27,8 @@ TEST(StatisticsTest, NoErrorTest) {
     error_entry.ip = "192.168.1.10";
     error_entry.parse_success = true;
 
-    AnalysisResult data = statistic.Process(error_entry);
+    AnalysisResult data;
+    statistic.Process(error_entry, data);
     EXPECT_EQ(data.successful_requests, 1);
 }
 
@@ -38,6 +40,7 @@ TEST(statisticsTest, ParseFailTest) {
     error_entry.ip = "240";
     error_entry.parse_success = false;
 
-    AnalysisResult data = statistic.Process(error_entry);
+    AnalysisResult data;
+    statistic.Process(error_entry, data);
     EXPECT_EQ(data.failed_parses, 1);
 }

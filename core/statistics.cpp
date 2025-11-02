@@ -7,12 +7,10 @@ std::string Statistics::ExtractHour(std::string& time) {
     return time.substr(start, 2);
 }
 
-AnalysisResult Statistics::Process(LogInformation& data) {
-    AnalysisResult res;
-
+void Statistics::Process(LogInformation& data, AnalysisResult& res) {
     if (!data.parse_success) {
         res.failed_parses++;
-        return res;
+        return;
     }
 
     res.total_processed++;
@@ -23,9 +21,7 @@ AnalysisResult Statistics::Process(LogInformation& data) {
     else {
         res.ip[data.ip]++;
         res.error_counts[std::to_string(data.status)]++;
-        res.time_distribution[ExtractHour(data.time)]++;
+        res.time_distribution[ExtractHour(data.time) + ":00"]++;
         res.error_requests++;
     }
-
-    return res;
 }

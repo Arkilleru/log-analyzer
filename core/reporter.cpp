@@ -13,7 +13,7 @@ std::string Reporter::GenerateGeneralStats(const AnalysisResult& data) {
     return stats;
 }
 
-std::vector<std::pair<std::string, int>> Reporter::ToSortedVector(const std::unordered_map<std::string, int> mp) {
+std::vector<std::pair<std::string, int>> Reporter::ToSortedVector(const std::unordered_map<std::string, int>& mp) {
     std::vector<std::pair<std::string, int>> sorted(mp.begin(), mp.end());
 
     sort(sorted.begin(), sorted.end(), [](const auto& val1, const auto& val2) {

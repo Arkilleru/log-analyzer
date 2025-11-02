@@ -34,7 +34,7 @@ TEST_F(ReporterTest, NormalTest) {
     AnalysisResult res = createSampleData();
     Reporter reporter;
     std::string report = reporter.GenerateTextReport(res);
-;
+
     EXPECT_TRUE(report.find("Sucсessful - 850") != std::string::npos);
     EXPECT_TRUE(report.find("Failed Parsing - 5") != std::string::npos);
     EXPECT_TRUE(report.find("10.0.0.25 - 33") != std::string::npos);
