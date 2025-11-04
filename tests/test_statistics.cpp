@@ -12,7 +12,7 @@ TEST(StatisticsTest, NormalTest) {
     AnalysisResult data;
     statistic.Process(error_entry, data);
     EXPECT_EQ(data.ip[error_entry.ip], 1);
-    EXPECT_EQ(data.time_distribution["18"], 1);
+    EXPECT_EQ(data.time_distribution["18:00"], 1);
     EXPECT_EQ(data.error_counts["400"], 1);
     EXPECT_EQ(data.error_requests, 1);
     EXPECT_EQ(data.successful_requests, 0);
