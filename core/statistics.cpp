@@ -1,4 +1,4 @@
-#include "analyzer.h"
+#include "statistics.h"
 
 std::string Statistics::ExtractHour(std::string& time) {
     int pos = time.find(":");

@@ -1,5 +1,4 @@
 #include "analyzer.h"
-#include <iostream>
 
 std::string Analyzer::analyze(std::string& path) {
     reader.OpenFile(path);

@@ -1,4 +1,4 @@
-#include "analyzer.h"
+#include "reader.h"
 
 
 bool Reader::OpenFile(const std::string& path) {

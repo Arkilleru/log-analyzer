@@ -1,5 +1,4 @@
-#include "analyzer.h"
-#include <iostream>
+#include "parser.h"
 
 
 LogInformation Parser::Parse(const std::string& line) {

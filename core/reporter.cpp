@@ -1,4 +1,4 @@
-#include "analyzer.h"
+#include "reporter.h"
 
 std::string Reporter::GenerateGeneralStats(const AnalysisResult& data) {
     std::string stats = "\033[34m";
