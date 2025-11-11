@@ -1,7 +1,8 @@
 #pragma once
 
 #include <unordered_map>
-#include <vector>
+#include <string>
+#include <algorithm>
 
 
 struct LogInformation {
@@ -23,14 +24,3 @@ struct AnalysisResult {
     int successful_requests = 0;
     int error_requests = 0; 
 };
-
-
-class Reader;
-class Parser;
-class Statistics;
-class Reporter;
-
-#include "reader.h"
-#include "parser.h"
-#include "statistics.h"
-#include "reporter.h"

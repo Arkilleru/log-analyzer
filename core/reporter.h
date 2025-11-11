@@ -1,5 +1,7 @@
 #pragma once
-#include "core.h"
+#include "common.h"
+
+#include <vector>
 
 class Reporter {
 private:

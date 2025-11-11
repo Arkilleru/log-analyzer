@@ -2,8 +2,8 @@
 
 TEST(AnalyzerTest, StandardTest) {
     Analyzer analyzer;
-    std::string path = "tests/test_data/normal_test.log";
-    std::string report = analyzer.analyze(path);
+    fs::path path = fs::path("test_data") / "normal_test.log";
+    std::string report = analyzer.analyze(path.string());
 
     EXPECT_TRUE(report.find("Sucсessful - 5") != std::string::npos);
     EXPECT_TRUE(report.find("Failed Parsing - 8") != std::string::npos);
@@ -15,8 +15,8 @@ TEST(AnalyzerTest, StandardTest) {
 
 TEST(AnalyzerTest, EmptyTest) {
     Analyzer analyzer;
-    std::string path = "tests/test_data/empty_test.log";
-    std::string report = analyzer.analyze(path);
+    fs::path path = fs::path("test_data") / "empty_test.log";
+    std::string report = analyzer.analyze(path.string());
 
     EXPECT_TRUE(report == "invalid file format or file empty");
 }

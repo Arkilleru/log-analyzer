@@ -1,12 +1,11 @@
 #pragma once
-#include "core.h"
+#include "common.h"
 
 #include <fstream>
 
 class Reader {
 private:
-    std::unique_ptr<std::ifstream> file;
-    size_t line_number;
+    std::unique_ptr<std::ifstream> file_;
 
 public:
     Reader() = default;

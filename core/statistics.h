@@ -1,7 +1,5 @@
 #pragma once
-#include "core.h"
-
-#include <algorithm>
+#include "common.h"
 
 class Statistics {
 public:
