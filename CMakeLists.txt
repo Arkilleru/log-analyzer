@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 cmake_policy(SET CMP0079 NEW) 
 
+
 find_package(GTest QUIET)
 if(NOT GTest_FOUND)
     include(FetchContent)

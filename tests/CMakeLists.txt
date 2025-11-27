@@ -1,3 +1,6 @@
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/test_data 
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 add_executable(test-runner
     test_reader.cpp
     test_parser.cpp
@@ -15,5 +18,3 @@ target_link_libraries(
 
 add_custom_target(test DEPENDS test-runner COMMAND ./test-runner)
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/test_data 
-     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
