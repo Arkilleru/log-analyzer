@@ -15,11 +15,6 @@ TEST(ReaderTest, SimpleTest) {
 TEST(ReaderTest, EmptyTest) {
     Reader reader;
     fs::path test_path = fs::path("test_data") / "test_empty.txt";
-
-    std::cout << test_path << "\n";
-    std::cout << fs::exists(test_path) << "\n";
-    std::cout << fs::current_path() << "\n";
-
     EXPECT_TRUE(reader.OpenFile(test_path.string()));
     EXPECT_FALSE(reader.MoreLines());
     reader.CloseFile();
