@@ -2,6 +2,7 @@
 #include "common.h"
 
 #include <fstream>
+#include <memory> 
 
 class Reader {
 private:
