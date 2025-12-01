@@ -1,11 +1,20 @@
 #include "parser.h"
+#include <iostream>
 
+LogFormat Parser::DetectFormat(const std::string& line) {
+    if (line.find("HTTP/1.0") != std::string::npos) {
+        return LogFormat::Nginx;
 
-LogInformation Parser::Parse(const std::string& line) {
-    LogInformation data;
+    } else if (line.find("HTTP/1.1") != std::string::npos) {
+        return LogFormat::Apache;
+    }
+
+    return LogFormat::Unknown;
+}
+
+void Parser::RegexParse(const std::string& line, const std::regex& pattern, LogInformation& data) {
     std::smatch matches;
-
-    if (std::regex_match(line, matches, nginx_pattern)) {
+    if (std::regex_match(line, matches, nginx_pattern_) && matches.size() == 7) {
         data.ip = matches[1];
         data.time = matches[2];
         data.operation = matches[3];
@@ -14,10 +23,26 @@ LogInformation Parser::Parse(const std::string& line) {
         data.answer_size = std::stoul(matches[6]);
         data.parse_success = true;
 
-        return data;
+        return;
     }
 
     data.parse_success = false;
+}
+
+LogInformation Parser::Parse(const std::string& line) {
+    LogInformation data;
+    data.format = DetectFormat(line);
+
+    if (data.format == LogFormat::Apache) {
+        RegexParse(line, apache_pattern_, data);
+    }
+    else if (data.format == LogFormat::Nginx) {
+        RegexParse(line, nginx_pattern_, data);
+    }
+    else {
+        data.parse_success = false;
+    }
+
 
     return data; 
 }
