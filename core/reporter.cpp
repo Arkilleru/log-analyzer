@@ -13,6 +13,17 @@ std::string Reporter::GenerateGeneralStats(const AnalysisResult& data) {
     return stats;
 }
 
+std::string Reporter::GenerateFormat(const AnalysisResult& data) {
+    std::string stats = "\033[31m";
+    stats += "Formats lines\n\n";
+    stats += "\033[0m";
+
+    for(const auto& format : data.format_counts) {
+        stats += LogFormatToString(format.first) + " - " + std::to_string(format.second) + "\n";
+    }
+    return stats + "\n";
+}
+
 std::vector<std::pair<std::string, int>> Reporter::ToSortedVector(const std::unordered_map<std::string, int>& mp) {
     std::vector<std::pair<std::string, int>> sorted(mp.begin(), mp.end());
 
@@ -42,7 +53,7 @@ std::string Reporter::GenerateErrorTypes(const AnalysisResult& data) {
     std::vector<std::pair<std::string, int>> sorted = ToSortedVector(data.error_counts);
 
     std::string types = "\033[32m";
-    types += "Types errors IP\n\n";
+    types += "Types errors\n\n";
     types += "\033[0m";
 
     for(int i = 0; i < sorted.size() && sorted[i].second != 0; ++i) {
@@ -73,7 +84,8 @@ std::string Reporter::GenerateTimeDistribution(const AnalysisResult& data) {
 
 std::string Reporter::GenerateTextReport(const AnalysisResult& data) {
     if (data.total_processed > 0) {
-        std::string report = GenerateGeneralStats(data) ;
+        std::string report = GenerateGeneralStats(data);
+        report += GenerateFormat(data);
         report += GenerateIpErrorsTop(data);
         report += GenerateErrorTypes(data);
         report += GenerateTimeDistribution(data);
