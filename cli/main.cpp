@@ -3,6 +3,7 @@
 
 int main() {
     std::string path;
+    std::cout << "Enter log file path:\n";
     std::getline(std::cin, path);
 
     Analyzer analysis;

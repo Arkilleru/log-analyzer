@@ -1,4 +1,4 @@
-#include "analyzer.h"
+#include "statistics.h"
 
 std::string Statistics::ExtractHour(std::string& time) {
     int pos = time.find(":");
@@ -14,6 +14,7 @@ void Statistics::Process(LogInformation& data, AnalysisResult& res) {
     }
 
     res.total_processed++;
+    res.format_counts[data.format]++;
 
     if (data.status < 400) {
         res.successful_requests++;
