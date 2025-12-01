@@ -45,7 +45,7 @@ cd log-analyzer
 
 - Очистка
 ``` 
-./run.sh build 
+./run.sh clean 
 ```
 
 - Очистка + Сборка + Тестирование
