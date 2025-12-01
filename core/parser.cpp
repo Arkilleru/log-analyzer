@@ -14,7 +14,7 @@ LogFormat Parser::DetectFormat(const std::string& line) {
 
 void Parser::RegexParse(const std::string& line, const std::regex& pattern, LogInformation& data) {
     std::smatch matches;
-    if (std::regex_match(line, matches, nginx_pattern_) && matches.size() == 7) {
+    if (std::regex_match(line, matches, pattern)) {
         data.ip = matches[1];
         data.time = matches[2];
         data.operation = matches[3];

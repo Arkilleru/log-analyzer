@@ -9,8 +9,8 @@ private:
     std::regex apache_pattern_;
 public:
     Parser() {
-        nginx_pattern_ = R"(^(\d+\.\d+\.\d+\.\d+) - - \[([^\]]+)\] \"(\w+) (.*?) HTTP/1.1" (\d+) (\d+))";
-        apache_pattern_ = R"(^(\d+\.\d+\.\d+\.\d+) - - \[([^\]]+)\] \"(\w+) (.*?) HTTP/1.0" (\d+) (\d+))"; 
+        nginx_pattern_ = R"(^(\d+\.\d+\.\d+\.\d+) - - \[([^\]]+)\] \"(\w+) (.*?) HTTP/1.0" (\d+) (\d+))";
+        apache_pattern_ = R"(^(\d+\.\d+\.\d+\.\d+) - - \[([^\]]+)\] \"(\w+) (.*?) HTTP/1.1" (\d+) (\d+))"; 
     }
 
     LogFormat DetectFormat(const std::string& line);

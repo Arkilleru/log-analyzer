@@ -5,6 +5,7 @@
 
 class Reporter {
 private:
+    std::string GenerateFormat(const AnalysisResult& data);
     std::string GenerateGeneralStats(const AnalysisResult& data);
     std::string GenerateIpErrorsTop(const AnalysisResult& data);
     std::string GenerateErrorTypes(const AnalysisResult& data);
