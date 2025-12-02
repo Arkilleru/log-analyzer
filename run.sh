@@ -35,6 +35,17 @@ build_project() {
     print_success "Build complete!"
 }
 
+run_cli() {
+    print_info "Running Log Analyzer..."
+    
+    if [ ! -d "$BUILD_DIR" ]; then
+        build_project
+    fi
+    
+    cd $BUILD_DIR/cli
+    ./$TARGET
+}
+
 run_tests() {
     print_info "Running tests..."
     if [ ! -d "$BUILD_DIR" ]; then
@@ -43,6 +54,7 @@ run_tests() {
     cd build/tests
     ./test-runner
     print_success "All tests passed!"
+    cd ../..
 }
 
 clean_project() {
@@ -70,6 +82,9 @@ case "$1" in
         ;;
     "all")
         run_all
+        ;;
+    "cli")
+        run_cli
         ;;
     *)
         print_error "Unknown command: $1"
