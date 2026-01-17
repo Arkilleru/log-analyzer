@@ -7,6 +7,9 @@ qt_standard_project_setup()
 
 qt_add_executable(log-analyzer-gui
     main.cpp
+    menu_window.h
+    menu_window.cpp
+    menu_window.ui
     main_window.h
     main_window.cpp
     main_window.ui

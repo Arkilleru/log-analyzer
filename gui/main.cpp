@@ -1,9 +1,11 @@
 #include <QApplication>
-#include "main_window.h"
+#include "menu_window.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
-    MainWindow window;
+    app.setApplicationName("Log analyzer");
+    MenuWindow window;
+    window.setWindowTitle("Menu");
     window.show();
     return app.exec();
 }
