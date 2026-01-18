@@ -1,6 +1,6 @@
 #include "analyzer.h"
 
-std::string Analyzer::analyze(std::string path) {
+AnalysisResult Analyzer::analyze(std::string path) {
     reader_.OpenFile(path);
 
     AnalysisResult res;
@@ -11,7 +11,6 @@ std::string Analyzer::analyze(std::string path) {
     }
 
     reader_.CloseFile();
-    std::string report = reporter_.GenerateTextReport(res);
 
-    return report;
+    return res;
 }

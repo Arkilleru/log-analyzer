@@ -1,4 +1,5 @@
 #include "../core/analyzer.h"
+#include "reporter.h"
 #include <iostream>
 
 int main() {
@@ -7,7 +8,9 @@ int main() {
     std::getline(std::cin, path);
 
     Analyzer analysis;
-    std::string report = analysis.analyze(path);
+    AnalysisResult result = analysis.analyze(path);
+    Reporter reporter;
+    std::string report = reporter.GenerateTextReport(result);
 
     std::cout << report;
 
