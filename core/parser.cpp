@@ -1,5 +1,4 @@
 #include "parser.h"
-#include <iostream>
 
 LogFormat Parser::DetectFormat(const std::string& line) {
     if (line.find("HTTP/1.0") != std::string::npos) {
