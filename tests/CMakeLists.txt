@@ -5,7 +5,6 @@ add_executable(test-runner
     test_reader.cpp
     test_parser.cpp
     test_statistics.cpp
-    test_reporter.cpp
     test_analyzer.cpp
 )
 
