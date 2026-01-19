@@ -81,3 +81,7 @@ build/
 
 
 !tests/test_data/*.log
+
+.DS_Store
+.qtcreator/
+CMakeLists.txt.user

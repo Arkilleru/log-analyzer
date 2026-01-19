@@ -12,6 +12,6 @@ private:
    Statistics statistics_;
 
 public:
-    AnalysisResult analyze(std::string path);
+    AnalysisResult analyze(const std::string& path);
 };
 

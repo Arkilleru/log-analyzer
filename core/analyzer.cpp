@@ -1,6 +1,6 @@
 #include "analyzer.h"
 
-AnalysisResult Analyzer::analyze(std::string path) {
+AnalysisResult Analyzer::analyze(const std::string& path) {
     reader_.OpenFile(path);
 
     AnalysisResult res;
