@@ -6,13 +6,196 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
-    <height>480</height>
+    <width>483</width>
+    <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>0</y>
+     <width>248</width>
+     <height>461</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="TopIPErrors">
+      <property name="title">
+       <string>Топ ошибочных ip</string>
+      </property>
+      <widget class="QTableWidget" name="IPTable">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>21</y>
+         <width>201</width>
+         <height>211</height>
+        </rect>
+       </property>
+       <column>
+        <property name="text">
+         <string>IP</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Count</string>
+        </property>
+       </column>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="title">
+       <string>Распределение ошибок по времени</string>
+      </property>
+      <widget class="QTableWidget" name="TimeDistributionTable">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>201</width>
+         <height>192</height>
+        </rect>
+       </property>
+       <column>
+        <property name="text">
+         <string>Time</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Count</string>
+        </property>
+       </column>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>261</width>
+     <height>461</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="General">
+      <property name="title">
+       <string>Главное</string>
+      </property>
+      <widget class="QWidget" name="formLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>201</width>
+         <height>211</height>
+        </rect>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="labelAlignment">
+         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+        <item row="0" column="1">
+         <widget class="QLabel" name="total">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="Label_2">
+          <property name="text">
+           <string>Ошибка парсинга</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="successful">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="Label_4">
+          <property name="text">
+           <string>Ошибочные</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="errors">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="Label_3">
+          <property name="text">
+           <string>Успешные</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="failed_parses">
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="Label">
+          <property name="text">
+           <string>Всего</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="TypesErrors">
+      <property name="title">
+       <string>Типы ошибок и их количество</string>
+      </property>
+      <widget class="QTableWidget" name="ErrorsTypeTable">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>20</y>
+         <width>211</width>
+         <height>192</height>
+        </rect>
+       </property>
+       <column>
+        <property name="text">
+         <string>Type</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Count</string>
+        </property>
+       </column>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>

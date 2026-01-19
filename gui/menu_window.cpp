@@ -1,6 +1,7 @@
 #include "menu_window.h"
 #include "main_window.h"
 #include "ui_menu_window.h"
+#include "../core/analyzer.h"
 
 MenuWindow::MenuWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -46,7 +47,11 @@ void MenuWindow::on_Start_clicked()
         return;
     }
 
-    MainWindow *main = new MainWindow;
+    Analyzer analyzer;
+    AnalysisResult res = analyzer.analyze(path.toStdString());
+
+    MainWindow *main = new MainWindow(res);
+    main->setWindowTitle("Analysis Result");
     main->setAttribute(Qt::WA_DeleteOnClose);
 
     main->show();

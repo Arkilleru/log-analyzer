@@ -15,8 +15,9 @@ qt_add_executable(log-analyzer-gui
     main_window.ui
 )
 
-target_link_libraries(log-analyzer-gui
-    PRIVATE Qt6::Widgets
+target_link_libraries(log-analyzer-gui PRIVATE
+    Qt6::Widgets
+    core_lib
 )
 
 qt_finalize_executable(log-analyzer-gui)
