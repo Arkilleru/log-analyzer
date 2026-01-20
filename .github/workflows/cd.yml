@@ -31,7 +31,12 @@ jobs:
           sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-tools-dev build-essential cmake
 
     - name: Configure CMake
-      run: cmake -S . -B build -DBUILD_GUI=ON -DCMAKE_BUILD_TYPE=Release
+      run: |
+           if [ "$RUNNER_OS" == "macOS" ]; then
+            cmake -S . -B build -DBUILD_GUI=OFF -DCMAKE_BUILD_TYPE=Release
+           else
+            cmake -S . -B build -DBUILD_GUI=ON -DCMAKE_BUILD_TYPE=Release
+           fi
 
     - name: Build GUI
       if: runner.os == 'Linux'
