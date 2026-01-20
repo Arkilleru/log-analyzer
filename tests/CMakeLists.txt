@@ -5,16 +5,17 @@ add_executable(test-runner
     test_reader.cpp
     test_parser.cpp
     test_statistics.cpp
-    test_reporter.cpp
     test_analyzer.cpp
+    tests.h
 )
 
-target_link_libraries(
-    test-runner
+target_link_libraries(test-runner
     core_lib
-    gtest
-    gtest_main
+    GTest::gtest
+    GTest::gtest_main
 )
 
-add_custom_target(test DEPENDS test-runner COMMAND ./test-runner)
-
+add_custom_target(run-tests
+    COMMAND test-runner
+    DEPENDS test-runner
+)

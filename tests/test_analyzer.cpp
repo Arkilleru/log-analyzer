@@ -3,20 +3,20 @@
 TEST(AnalyzerTest, StandardTest) {
     Analyzer analyzer;
     fs::path path = fs::path("test_data") / "normal_test.log";
-    std::string report = analyzer.analyze(path.string());
+    AnalysisResult res = analyzer.analyze(path.string());
 
-    EXPECT_TRUE(report.find("Sucсessful - 5") != std::string::npos);
-    EXPECT_TRUE(report.find("Failed Parsing - 8") != std::string::npos);
-    EXPECT_TRUE(report.find("192.168.2.145 - 4") != std::string::npos);
-    EXPECT_TRUE(report.find("20:00 - 2") != std::string::npos);
-    EXPECT_TRUE(report.find("500 - 2") != std::string::npos);
-    EXPECT_FALSE(report.find("402 - 1") != std::string::npos);
+    EXPECT_TRUE(res.successful_requests == 5);
+    EXPECT_TRUE(res.failed_parses == 8);
+    EXPECT_TRUE(res.ip["192.168.2.145"] == 4);
+    EXPECT_TRUE(res.time_distribution["20:00"]  == 2);
+    EXPECT_TRUE(res.error_counts["500"] == 2);
+    EXPECT_FALSE(res.error_counts["402"] == 2);
 }
 
 TEST(AnalyzerTest, EmptyTest) {
     Analyzer analyzer;
     fs::path path = fs::path("test_data") / "empty_test.log";
-    std::string report = analyzer.analyze(path.string());
+    AnalysisResult res = analyzer.analyze(path.string());
 
-    EXPECT_TRUE(report == "invalid file format or file empty");
+    EXPECT_TRUE(res.total_processed == 0);
 }

@@ -1,0 +1,79 @@
+name: CD
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-linux:
+    name: Build Linux GUI + CLI
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Qt6
+      run: |
+        sudo apt update
+        sudo apt install -y qt6-base-dev qt6-base-dev-tools qt6-tools-dev build-essential cmake libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxext-dev libxrandr-dev libxi-dev libxfixes-dev
+
+    - name: Configure CMake
+      run: cmake -S . -B build -DBUILD_GUI=ON -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build GUI
+      run: cmake --build build --target log-analyzer-gui --config Release
+
+    - name: Build CLI
+      run: cmake --build build --target log-analyzer-cli --config Release
+
+    - name: Package Linux artifacts
+      run: |
+        mkdir -p artifacts/linux
+        find build -type f \( -name "log-analyzer-gui" -o -name "log-analyzer-cli" \) -exec cp {} artifacts/linux/ \;
+        tar czvf artifacts/log-analyzer-linux.tar.gz -C artifacts/linux .
+
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: artifacts/log-analyzer-linux.tar.gz
+        tag_name: ${{ github.ref_name }}
+        name: Release ${{ github.ref_name }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-mac:
+    name: Build macOS CLI
+    runs-on: macos-latest
+    needs: build-linux 
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Qt
+      run: brew update && brew install qt
+
+    - name: Configure CMake
+      run: cmake -S . -B build -DBUILD_GUI=OFF -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build CLI
+      run: cmake --build build --target log-analyzer-cli --config Release
+
+    - name: Package macOS artifacts
+      run: |
+        mkdir -p artifacts/mac
+        find build -type f -name "log-analyzer-cli" -exec cp {} artifacts/mac/ \;
+        zip -r artifacts/log-analyzer-mac.zip artifacts/mac
+
+    - name: Upload macOS Asset
+      uses: softprops/action-gh-release@v2
+      with:
+        files: artifacts/log-analyzer-mac.zip
+        tag_name: ${{ github.ref_name }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
