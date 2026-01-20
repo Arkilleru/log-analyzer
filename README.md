@@ -1,8 +1,8 @@
-# Log Analyzer v0.2.1
+# Log Analyzer v1.0.0
 
 ## 💻 Платформы
-- ✅ macOS (clang/gcc, CMake ≥ 3.10)
-- ✅ Linux (gcc, CMake ≥ 3.10)
+- MacOS (cli)
+- Linux (cli, gui)
 
 ## 🚀 Возможности
 ### 📋 Поддерживаемые форматы логов:
@@ -21,39 +21,28 @@
 - Язык: C++17
 - Сборка: CMake
 - Тестирование: Google Test (gtest/gmock)
-- CI: Сборка и тестирование
+- CI/CD: тестирование и сборка
+- Qt: графическое приложение
 
 ## 🛠️ В разработке:
-- GUI
+- Поддержка Windows
 
-## 📦 Установка и сборка
-- Клонирование репозитория
+## 📦 Установка и запуск
+### Linux
+Для cli
 ```
-git clone https://github.com/Arkilleru/log-analyzer.git
-cd log-analyzer
+chmod +x log-analyzer-cli
+./log-analyzer-cli
 ```
-
-- Сборка
-``` 
-./run.sh build 
+Для gui
 ```
-
-- Консольное приложение
+sudo apt install qt6-base-dev
+chmod +x log-analyzer-gui
+./log-analyzer-gui
 ```
-./run.sh cli
+### MacOS
+Для cli
 ```
-
-- Тестирование
-```
-./run.sh test
-```
-
-- Очистка
-``` 
-./run.sh clean 
-```
-
-- Очистка + Сборка + Тестирование
-``` 
-./run.sh all
+chmod +x log-analyzer-cli
+./log-analyzer-cli
 ```
