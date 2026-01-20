@@ -1,0 +1,59 @@
+name: CD
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+
+jobs:
+  build-release:
+    name: Build release binaries
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake build-essential qtbase5-dev
+
+    - name: Install dependencies (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew update
+        brew install qt cmake
+
+    - name: Configure
+      run: |
+        cmake -S . -B build \
+              -DBUILD_GUI=ON \
+              -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build
+      run: |
+        cmake --build build --config Release
+
+    - name: Package artifacts
+      run: |
+        mkdir -p artifacts
+
+        # CLI
+        find build -type f -name "log-analyzer-cli*" -exec cp {} artifacts/ \;
+
+        # GUI
+        find build -type f -name "log-analyzer-gui*" -exec cp {} artifacts/ \;
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: log-analyzer-${{ runner.os }}
+        path: artifacts
