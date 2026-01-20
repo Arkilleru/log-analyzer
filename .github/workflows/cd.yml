@@ -34,7 +34,7 @@ jobs:
     - name: Package Linux artifacts
       run: |
         mkdir -p artifacts/linux
-        find build -type f -executable -exec cp {} artifacts/linux/ \;
+        find build -type f \( -name "log-analyzer-gui" -o -name "log-analyzer-cli" \) -exec cp {} artifacts/linux/ \;
         tar czvf artifacts/log-analyzer-linux.tar.gz -C artifacts/linux .
 
     - name: Release
@@ -67,7 +67,7 @@ jobs:
     - name: Package macOS artifacts
       run: |
         mkdir -p artifacts/mac
-        find build -type f -executable -exec cp {} artifacts/mac/ \;
+        find build -type f -name "log-analyzer-cli" -exec cp {} artifacts/mac/ \;
         zip -r artifacts/log-analyzer-mac.zip artifacts/mac
 
     - name: Upload macOS Asset
